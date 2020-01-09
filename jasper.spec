@@ -7,7 +7,7 @@ Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Group:   System Environment/Libraries
 Version: 1.900.1
-Release: 16%{?dist}.3
+Release: 21%{?dist}
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~mdadams/jasper/
@@ -38,6 +38,32 @@ Patch10: jasper-CVE-2014-8137.patch
 Patch11: jasper-CVE-2014-8138.patch
 Patch12: jasper-CVE-2014-8157.patch
 Patch13: jasper-CVE-2014-8158.patch
+
+Patch14: jasper-CVE-2015-5203-CVE-2016-9262.patch
+Patch15: jasper-CVE-2015-5221.patch
+Patch16: jasper-CVE-2016-1577.patch
+Patch17: jasper-CVE-2016-1867.patch
+Patch18: jasper-CVE-2016-2089.patch
+Patch19: jasper-CVE-2016-2116.patch
+Patch20: jasper-CVE-2016-8654.patch
+Patch21: jasper-CVE-2016-8690-CVE-2016-8884-CVE-2016-8885.patch
+Patch22: jasper-CVE-2016-8691-CVE-2016-8692.patch
+Patch23: jasper-CVE-2016-8693.patch
+Patch24: jasper-CVE-2016-9390.patch
+Patch25: jasper-CVE-2016-9392-CVE-2016-9393-CVE-2016-9394.patch
+Patch26: jasper-CVE-2016-9560.patch
+Patch27: jasper-CVE-2016-10251.patch
+Patch28: jasper-CVE-2016-9583.patch
+Patch29: jasper-CVE-2016-9591.patch
+Patch30: jasper-CVE-2016-9600.patch
+Patch31: jasper-CVE-2016-10248.patch
+Patch32: jasper-CVE-2016-10249.patch
+Patch33: jasper-CVE-2016-8883.patch
+Patch34: jasper-CVE-2016-9387.patch
+Patch35: jasper-CVE-2016-9388.patch
+Patch36: jasper-CVE-2016-9389.patch
+Patch37: jasper-CVE-2016-9391.patch
+Patch38: jasper-CVE-implicit-declaration-fix.patch
 
 BuildRequires: automake libtool
 BuildRequires: freeglut-devel 
@@ -94,6 +120,32 @@ Requires: %{name} = %{version}-%{release}
 %patch11 -p1 -b .CVE-2014-8138
 %patch12 -p1 -b .CVE-2014-8157
 %patch13 -p1 -b .CVE-2014-8158
+
+%patch14 -p1 -b .CVE-2015-5203
+%patch15 -p1 -b .CVE-2015-5221
+%patch16 -p1 -b .CVE-2016-1577
+%patch17 -p1 -b .CVE-2016-1867
+%patch18 -p1 -b .CVE-2016-2089
+%patch19 -p1 -b .CVE-2016-2116
+%patch20 -p1 -b .CVE-2016-8654
+%patch21 -p1 -b .CVE-2016-8690
+%patch22 -p1 -b .CVE-2016-8691
+%patch23 -p1 -b .CVE-2016-8693
+%patch24 -p1 -b .CVE-2016-9390
+%patch25 -p1 -b .CVE-2016-9392
+%patch26 -p1 -b .CVE-2016-9560
+%patch27 -p1 -b .CVE-2016-10251
+%patch28 -p1 -b .CVE-2016-9583
+%patch29 -p1 -b .CVE-2016-9591
+%patch30 -p1 -b .CVE-2016-9600
+%patch31 -p1 -b .CVE-2016-10248
+%patch32 -p1 -b .CVE-2016-10249
+%patch33 -p1 -b .CVE-2016-8883
+%patch34 -p1 -b .CVE-2016-9387
+%patch35 -p1 -b .CVE-2016-9388
+%patch36 -p1 -b .CVE-2016-9389
+%patch37 -p1 -b .CVE-2016-9391
+%patch38 -p1 -b .CVE-implicit-declaration-fix
 
 autoreconf -i
 
@@ -158,17 +210,30 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Mon Jan 19 2015 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16.3
-- CVE-2014-8157 - dec->numtiles off-by-one check in jpc_dec_process_sot() (#1183671)
-- CVE-2014-8158 - unrestricted stack memory use in jpc_qmfb.c (#1183679)
+* Tue Apr 25 2017 Josef Ridky <jridky@redhat.com> - 1.900.1-21
+- Bump release
 
-* Fri Dec 12 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16.2
-- CVE-2014-8137 - double-free in in jas_iccattrval_destroy (#1173566)
-- CVE-2014-8138 - heap overflow in jp2_decode (#1173566)
+* Mon Apr 24 2017 Josef Ridky <jridky@redhat.com> - 1.900.1-20
+- Multiple security fixes (fixed by thoger):
+  CVE-2015-5203 CVE-2015-5221 CVE-2016-1577 CVE-2016-1867 CVE-2016-2089
+  CVE-2016-2116 CVE-2016-8654 CVE-2016-8690 CVE-2016-8691 CVE-2016-8692
+  CVE-2016-8693 CVE-2016-8883 CVE-2016-8884 CVE-2016-8885 CVE-2016-9262
+  CVE-2016-9387 CVE-2016-9388 CVE-2016-9389 CVE-2016-9390 CVE-2016-9391
+  CVE-2016-9392 CVE-2016-9393 CVE-2016-9394 CVE-2016-9560 CVE-2016-9583
+  CVE-2016-9591 CVE-2016-9600 CVE-2016-10248 CVE-2016-10249 CVE-2016-10251
+- Fix implicit declaration warning caused by security fixes above
 
-* Sat Dec 06 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16.1
+* Mon Jan 19 2015 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-19
+- CVE-2014-8157 - dec->numtiles off-by-one check in jpc_dec_process_sot() (#1183672)
+- CVE-2014-8158 - unrestricted stack memory use in jpc_qmfb.c (#1183680)
+
+* Fri Dec 12 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-18
+- CVE-2014-8137 - double-free in in jas_iccattrval_destroy (#1173567)
+- CVE-2014-8138 - heap overflow in jp2_decode (#1173567)
+
+* Sat Dec 06 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-17
 - CVE-2014-9029 - incorrect component number check in COC, RGN and QCC
-                  marker segment decoders (#1171208)
+                  marker segment decoders (#1171209)
 
 * Wed Oct 26 2011 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16
 - CERT VU#887409: heap buffer overflow flaws lead to arbitrary code execution
