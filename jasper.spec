@@ -7,7 +7,7 @@ Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Group:   System Environment/Libraries
 Version: 1.900.1
-Release: 16%{?dist}.2
+Release: 16%{?dist}.3
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~mdadams/jasper/
@@ -36,6 +36,8 @@ Patch8: jasper-1.900.1-CERT-VU-887409.patch
 Patch9: jasper-CVE-2014-9029.patch
 Patch10: jasper-CVE-2014-8137.patch
 Patch11: jasper-CVE-2014-8138.patch
+Patch12: jasper-CVE-2014-8157.patch
+Patch13: jasper-CVE-2014-8158.patch
 
 BuildRequires: automake libtool
 BuildRequires: freeglut-devel 
@@ -90,6 +92,8 @@ Requires: %{name} = %{version}-%{release}
 %patch9 -p1 -b .CVE-2014-9029
 %patch10 -p1 -b .CVE-2014-8137
 %patch11 -p1 -b .CVE-2014-8138
+%patch12 -p1 -b .CVE-2014-8157
+%patch13 -p1 -b .CVE-2014-8158
 
 autoreconf -i
 
@@ -154,6 +158,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Jan 19 2015 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16.3
+- CVE-2014-8157 - dec->numtiles off-by-one check in jpc_dec_process_sot() (#1183671)
+- CVE-2014-8158 - unrestricted stack memory use in jpc_qmfb.c (#1183679)
+
 * Fri Dec 12 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16.2
 - CVE-2014-8137 - double-free in in jas_iccattrval_destroy (#1173566)
 - CVE-2014-8138 - heap overflow in jp2_decode (#1173566)
