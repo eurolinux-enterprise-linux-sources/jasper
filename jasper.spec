@@ -7,7 +7,7 @@ Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Group:   System Environment/Libraries
 Version: 1.900.1
-Release: 21%{?dist}
+Release: 22%{?dist}
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~mdadams/jasper/
@@ -64,6 +64,7 @@ Patch35: jasper-CVE-2016-9388.patch
 Patch36: jasper-CVE-2016-9389.patch
 Patch37: jasper-CVE-2016-9391.patch
 Patch38: jasper-CVE-implicit-declaration-fix.patch
+Patch39: jasper-fix-std.patch
 
 BuildRequires: automake libtool
 BuildRequires: freeglut-devel 
@@ -146,6 +147,7 @@ Requires: %{name} = %{version}-%{release}
 %patch36 -p1 -b .CVE-2016-9389
 %patch37 -p1 -b .CVE-2016-9391
 %patch38 -p1 -b .CVE-implicit-declaration-fix
+%patch39 -p1 -b .fix-std
 
 autoreconf -i
 
@@ -210,6 +212,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Dec 07 2017 Josef Ridky <jridky@redhat.com> - 1.900.1-22
+- Resolves: #1455287 - fix issue with broken c++ standards
+
 * Tue Apr 25 2017 Josef Ridky <jridky@redhat.com> - 1.900.1-21
 - Bump release
 
