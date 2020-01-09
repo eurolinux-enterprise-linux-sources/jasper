@@ -7,7 +7,7 @@ Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Group:   System Environment/Libraries
 Version: 1.900.1
-Release: 15%{?dist}.1
+Release: 16%{?dist}.2
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~mdadams/jasper/
@@ -32,6 +32,10 @@ Patch6: jasper-1.900.1-CVE-2008-3522.patch
 Patch7: jasper-pkgconfig.patch
 # heap buffer overflow flaws lead to arbitrary code execution (CERT VU#887409)
 Patch8: jasper-1.900.1-CERT-VU-887409.patch
+
+Patch9: jasper-CVE-2014-9029.patch
+Patch10: jasper-CVE-2014-8137.patch
+Patch11: jasper-CVE-2014-8138.patch
 
 BuildRequires: automake libtool
 BuildRequires: freeglut-devel 
@@ -83,6 +87,9 @@ Requires: %{name} = %{version}-%{release}
 %patch6 -p1 -b .CVE-2008-3522
 %patch7 -p1 -b .pkgconfig
 %patch8 -p1 -b .CERT-VU-887409
+%patch9 -p1 -b .CVE-2014-9029
+%patch10 -p1 -b .CVE-2014-8137
+%patch11 -p1 -b .CVE-2014-8138
 
 autoreconf -i
 
@@ -147,9 +154,17 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Wed Oct 26 2011 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-15.1
+* Fri Dec 12 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16.2
+- CVE-2014-8137 - double-free in in jas_iccattrval_destroy (#1173566)
+- CVE-2014-8138 - heap overflow in jp2_decode (#1173566)
+
+* Sat Dec 06 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16.1
+- CVE-2014-9029 - incorrect component number check in COC, RGN and QCC
+                  marker segment decoders (#1171208)
+
+* Wed Oct 26 2011 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-16
 - CERT VU#887409: heap buffer overflow flaws lead to arbitrary code execution
-  (#749149)
+  (#749150)
 
 * Tue Mar 02 2010 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-15
 - Move documentation from libs subpackage to main package
