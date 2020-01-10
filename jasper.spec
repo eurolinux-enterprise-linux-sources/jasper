@@ -7,7 +7,7 @@ Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Group:   System Environment/Libraries
 Version: 1.900.1
-Release: 31%{?dist}
+Release: 33%{?dist}
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~frodo/jasper/
@@ -74,6 +74,8 @@ Patch37: jasper-CVE-2016-9391.patch
 Patch38: jasper-CVE-implicit-declaration-fix.patch
 
 Patch39: jasper-1.900.1-define-SIZE-MAX.patch	
+Patch40: jasper-1.900.1-CVE-2016-9396.patch
+Patch41: jasper-1.900.1-CVE-2017-1000050.patch
 
 # autoreconf
 BuildRequires: autoconf automake libtool
@@ -167,6 +169,8 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 %patch37 -p1 -b .CVE-2016-9391
 %patch38 -p1 -b .CVE-implicit-declaration-fix
 %patch39 -p1 -b .define-SIZE-MAX
+%patch40 -p1 -b .CVE-2016-9396
+%patch41 -p1 -b .CVE-2017-1000050
 
 autoreconf --verbose --force --install
 
@@ -236,6 +240,13 @@ make check
 
 
 %changelog
+* Thu Jun 21 2018 Josef Ridky <jridky@redhat.com> - 1.900.1-33
+- remove implicit declaration of jas_eprintf (#1585830)
+
+* Thu Jun 21 2018 Josef Ridky <jridky@redhat.com> - 1.900.1-32
+- Fix CVE-2016-9396 (#1583721)
+- Fix CVE-2017-1000050 (#1585830)
+
 * Wed May 31 2017 Josef Ridky <jridky@redhat.com> - 1.900.1-31
 - Fix missing declaration of SIZE_MAX constant in jas_math.h (#1455489)
 
