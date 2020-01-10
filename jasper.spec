@@ -7,7 +7,7 @@ Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Group:   System Environment/Libraries
 Version: 1.900.1
-Release: 26%{?dist}.3
+Release: 29%{?dist}
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~frodo/jasper/
@@ -181,17 +181,17 @@ make check
 
 
 %changelog
-* Mon Jan 19 2015 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-26.3
-- CVE-2014-8157 - dec->numtiles off-by-one check in jpc_dec_process_sot() (#1183673)
-- CVE-2014-8158 - unrestricted stack memory use in jpc_qmfb.c (#1183681)
+* Mon Jan 19 2015 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-29
+- CVE-2014-8157 - dec->numtiles off-by-one check in jpc_dec_process_sot() (#1183674)
+- CVE-2014-8158 - unrestricted stack memory use in jpc_qmfb.c (#1183682)
 
-* Fri Dec 12 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-26.2
-- CVE-2014-8137 - double-free in in jas_iccattrval_destroy (#1173568)
-- CVE-2014-8138 - heap overflow in jp2_decode (#1173568)
+* Fri Dec 12 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-28
+- CVE-2014-8137 - double-free in in jas_iccattrval_destroy (#1173569)
+- CVE-2014-8138 - heap overflow in jp2_decode (#1173569)
 
-* Sat Dec 06 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-26.1
+* Sat Dec 06 2014 Jiri Popelka <jpopelka@redhat.com> - 1.900.1-27
 - CVE-2014-9029 - incorrect component number check in COC, RGN and QCC
-                  marker segment decoders (#1171210)
+                  marker segment decoders (#1171211)
 
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.900.1-26
 - Mass rebuild 2014-01-24
